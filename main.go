@@ -18,11 +18,6 @@ typedef struct {
 	cliproxy_host_call_fn call;
 	cliproxy_host_free_fn free_buffer;
 } cliproxy_host_api;
-
-int cliproxy_plugin_init(uint32_t abi_version, const cliproxy_host_api* host_api, cliproxy_buffer* response);
-int cliproxy_plugin_call(const char* method, const uint8_t* request, size_t request_len, cliproxy_buffer* response);
-void cliproxy_plugin_free_buffer(void* ptr, size_t len);
-void cliproxy_plugin_shutdown(void);
 */
 import "C"
 
