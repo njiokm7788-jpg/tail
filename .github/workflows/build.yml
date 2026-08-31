@@ -21,8 +21,19 @@ jobs:
       - name: Build .so
         run: CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build -buildmode=c-shared -ldflags="-s -w" -o tailscale-gateway.so .
 
+      - name: Package zip + checksums
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          ZIP_NAME="tailscale-gateway_${VERSION}_linux_amd64.zip"
+          zip "$ZIP_NAME" tailscale-gateway.so
+          sha256sum "$ZIP_NAME" > checksums.txt
+          echo "Created: $ZIP_NAME"
+          cat checksums.txt
+
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: tailscale-gateway.so
+          files: |
+            tailscale-gateway_*.zip
+            checksums.txt
           generate_release_notes: true
