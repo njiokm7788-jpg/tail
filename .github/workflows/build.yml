@@ -1,0 +1,28 @@
+name: Build Plugin
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+
+      - name: Build .so
+        run: CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build -buildmode=c-shared -ldflags="-s -w" -o tailscale-gateway.so .
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: tailscale-gateway.so
+          generate_release_notes: true
