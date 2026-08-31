@@ -7,7 +7,7 @@
       "description": "Config generator panel for Tailscale integration. Fill form in CPA panel → generate config.yaml snippet → paste into config.",
       "author": "njiokm7788-jpg",
       "version": "0.2.0",
-      "repository": "njiokm7788-jpg/tail",
+      "repository": "https://github.com/njiokm7788-jpg/tail",
       "install": {
         "type": "github-release",
         "artifacts": [
