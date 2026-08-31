@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "plugins": [
+    {
+      "id": "tailscale-gateway",
+      "name": "Tailscale Gateway",
+      "description": "Config generator panel for Tailscale integration. Fill form in CPA panel → generate config.yaml snippet → paste into config.",
+      "author": "njiokm7788-jpg",
+      "version": "0.2.0",
+      "repository": "njiokm7788-jpg/tail",
+      "install": {
+        "type": "github-release",
+        "artifacts": [
+          {
+            "goos": "linux",
+            "goarch": "amd64"
+          }
+        ]
+      }
+    }
+  ]
+}
